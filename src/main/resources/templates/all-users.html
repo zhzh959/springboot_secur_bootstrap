@@ -42,7 +42,11 @@
                     <div class="tab-content" id="tabContent">
                         <ul class="nav nav-tabs">
                             <a class="nav-link active" data-toggle="tab">Users Table</a>
+<<<<<<< HEAD
                             <a class="nav-link" data-toggle="tab" th:href="@{/addNewUser}">New User</a>
+=======
+                            <a class="nav-link" data-toggle="tab" th:href="@{/admin/addNewUser}">New User</a>
+>>>>>>> 9ed87de (Initial commit)
                         </ul>
                         <div class="card">
                             <div class="card-header">
@@ -67,7 +71,11 @@
                                     <tr th:each="user : ${users}">
                                         <td th:text="${user.id}">id</td>
                                         <td th:text="${user.name}">name</td>
+<<<<<<< HEAD
                                         <td th:text="${user.lastName}">surname</td>
+=======
+                                        <td th:text="${user.lastName}">LastName</td>
+>>>>>>> 9ed87de (Initial commit)
                                         <td th:text="${user.age}">age</td>
                                         <td th:text="${user.email}">email</td>
                                         <td th:text="${user.login}">login</td>
@@ -92,7 +100,11 @@
                                                         <button type="button" class="btn-close" data-bs-dismiss="modal"
                                                                 aria-label="Close"></button>
                                                     </div>
+<<<<<<< HEAD
                                                     <form th:action="@{/updateinfo/{id}(id=${user.id})}"
+=======
+                                                    <form th:action="@{/admin/updateinfo/{id}(id=${user.id})}"
+>>>>>>> 9ed87de (Initial commit)
                                                           th:object="${user}" th:method="PUT">
                                                         <div class="modal-body col-md text-center">
                                                             <br>
@@ -159,7 +171,11 @@
                                                                 aria-label="Close"></button>
                                                     </div>
                                                     <form class="modal-body col-md text-center"
+<<<<<<< HEAD
                                                           th:action="@{/delete/{id}(id=${user.id})}"
+=======
+                                                          th:action="@{/admin/delete/{id}(id=${user.id})}"
+>>>>>>> 9ed87de (Initial commit)
                                                           th:method="DELETE">
                                                         <div class="modal-body col-md">
                                                             <label for="id"><b>ID</b></label>
