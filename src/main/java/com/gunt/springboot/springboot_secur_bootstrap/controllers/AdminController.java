@@ -9,10 +9,9 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
 
-import java.util.stream.Collectors;
 
 @Controller
-@RequestMapping("/")
+@RequestMapping("/admin")
 public class AdminController {
 
     private final UserService userService;
@@ -24,7 +23,7 @@ public class AdminController {
         this.roleService = roleService;
     }
 
-    @GetMapping("/admin")
+    @GetMapping("")
     public String showAllUsers(@AuthenticationPrincipal User user, Model model) {
         model.addAttribute("users", userService.getAllUsers());
         model.addAttribute("user", user);
@@ -32,53 +31,30 @@ public class AdminController {
         return "all-users";
     }
 
-<<<<<<< HEAD
     @GetMapping("/addNewUser")
-=======
-    @GetMapping("/admin/addNewUser")
->>>>>>> 9ed87de (Initial commit)
     public String addPage(@AuthenticationPrincipal User user, Model model) {
         model.addAttribute("user", user);
         model.addAttribute("roles", roleService.getAllRoles());
         return "updateInfo";
     }
 
-<<<<<<< HEAD
     @PostMapping("/saveUser")
-=======
-    @PostMapping("/admin/saveUser")
->>>>>>> 9ed87de (Initial commit)
     public String saveUser(@ModelAttribute("user") User user) {
-        getUserRoles(user);
+        userService.getUserRoles(user);
         userService.saveUser(user);
         return "redirect:/admin";
     }
 
-<<<<<<< HEAD
     @PutMapping("/updateinfo/{id}")
-=======
-    @PutMapping("/admin/updateinfo/{id}")
->>>>>>> 9ed87de (Initial commit)
-    public String editPage(@ModelAttribute("user") User user, Model model) {
-        model.addAttribute("roles", roleService.getAllRoles());
-        getUserRoles(user);
+    public String editPage(@ModelAttribute("user") User user) {
+        userService.getUserRoles(user);
         userService.updateUser(user);
         return "redirect:/admin";
     }
 
-<<<<<<< HEAD
     @DeleteMapping("/delete/{id}")
-=======
-    @DeleteMapping("/admin/delete/{id}")
->>>>>>> 9ed87de (Initial commit)
     public String deleteUser(@PathVariable("id") long id) {
         userService.deleteUser(id);
         return "redirect:/admin";
-    }
-
-    private void getUserRoles(User user) {
-        user.setRoles(user.getRoles().stream()
-                .map(role -> roleService.getRole(role.getRoleName()))
-                .collect(Collectors.toSet()));
     }
 }

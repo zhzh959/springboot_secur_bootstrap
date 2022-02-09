@@ -11,7 +11,7 @@ import java.util.HashSet;
 import java.util.Set;
 
 @Entity
-@Table(name = "sec_users")
+@Table(name = "b_users")
 public class User implements UserDetails {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -30,13 +30,14 @@ public class User implements UserDetails {
     private String password;
     @ManyToMany(fetch = FetchType.LAZY)
     @Fetch(FetchMode.JOIN)
-    @JoinTable(name = "sec_users_roles",
+    @JoinTable(name = "b_users_roles",
             joinColumns = @JoinColumn(name = "userid"),
             inverseJoinColumns = @JoinColumn(name = "roleid"))
     private Set<Role> roles = new HashSet<>();
 
     public User() {
     }
+
 
     public User(String name, String lastName, byte age, String email, String login, String password, Set<Role> roles) {
         this.name = name;
@@ -140,6 +141,12 @@ public class User implements UserDetails {
 
     public void setRoles(Set<Role> roles) {
         this.roles = roles;
+        if (roles != null && roles.contains("ADMIN")) {
+            roles.add(new Role("ADMIN"));
+        }
+        if (roles != null && roles.contains("USER")) {
+            roles.add(new Role("USER"));
+        }
     }
 
 }

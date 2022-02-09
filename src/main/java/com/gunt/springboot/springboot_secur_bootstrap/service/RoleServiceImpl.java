@@ -7,6 +7,7 @@ import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
 import java.util.List;
+import java.util.Set;
 
 @Service
 public class RoleServiceImpl implements RoleService {
@@ -18,16 +19,19 @@ public class RoleServiceImpl implements RoleService {
     }
 
     @Override
+    @Transactional(readOnly = true)
     public List<Role> getAllRoles() {
         return roleDAO.getAllRoles();
     }
 
     @Override
+    @Transactional(readOnly = true)
     public Role getRole(String roleName) {
         return roleDAO.getRole(roleName);
     }
 
     @Override
+    @Transactional(readOnly = true)
     public Role getRoleById(Long id) {
         return roleDAO.getRoleById(id);
     }
@@ -37,4 +41,5 @@ public class RoleServiceImpl implements RoleService {
     public void addRole(Role role) {
         roleDAO.addRole(role);
     }
+
 }

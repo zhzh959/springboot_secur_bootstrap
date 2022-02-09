@@ -6,13 +6,13 @@ import javax.persistence.*;
 import java.util.Set;
 
 @Entity
-@Table(name = "sec_roles")
+@Table(name = "b_roles")
 public class Role implements GrantedAuthority {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
     private String roleName;
-    @ManyToMany(mappedBy = "roles")
+    @Transient
     private Set<User> users;
 
     public Role() {

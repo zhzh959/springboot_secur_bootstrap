@@ -11,18 +11,20 @@
 </head>
 <body>
 
-<nav class="navbar navbar-dark bg-dark">
-    <div class="container-fluid">
-        <p class="navbar-brand text-white">
-            <b><span class="align-middle" th:text="${user.login}"></span></b>
+    <div id="header" class="d-flex bg-dark p-0">
+        <div class="p-2 w-100 text-white">
+            <a><span class="p-2 align-middle" th:text="${user.login}"></span></a>
             <span class="align-middle">with roles:</span>
-            <span class="align-middle" th:text="${user.roles}"></span>
-        </p>
-        <form th:action="@{/logout}" method="post">
-            <button type="submit" class="btn btn-dark text-secondary">Logout</button>
-        </form>
+            <span class="align-middle" th:block th:each="role : ${user.getRoles()}">
+                                            <span th:text="${role.roleName}"/>
+                </th:block>
+
+            </span>
+        </div>
+        <a></a><form th:action="@{/logout}" method="post">
+        <button type="submit" class="btn btn-dark text-secondary">Logout</button>
+    </form></a>
     </div>
-</nav>
 <div class="container-fluid h-100">
     <div class="row h-100">
 

@@ -2,10 +2,11 @@ package com.gunt.springboot.springboot_secur_bootstrap.dao;
 
 import com.gunt.springboot.springboot_secur_bootstrap.entity.Role;
 import org.springframework.stereotype.Repository;
-
 import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
+
 import java.util.List;
+
 
 @Repository
 public class RoleDAOImpl implements RoleDAO {
@@ -33,4 +34,5 @@ public class RoleDAOImpl implements RoleDAO {
     public void addRole(Role role) {
         entityManager.persist(role);
     }
+
 }
